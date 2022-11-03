@@ -1,22 +1,23 @@
-public class Rectangle {
-    private Point topLeftPoint;
+package Shapes;
+
+public class Rectangle extends Shape{
     private double height;
     private double width;
 
     public Rectangle(){
-        this.topLeftPoint = new Point();
+        this.position = new Point();
         this.height = 0;
         this.width = 0;
     }
 
     public Rectangle(Point topLeftPoint, double height, double width){
-        this.topLeftPoint = topLeftPoint;
+        this.position = topLeftPoint;
         this.height = height;
         this.width = width;
     }
 
-    public Point getTopLeftPoint() {
-        return topLeftPoint;
+    public Point getPosition() {
+        return position;
     }
 
     public double getHeight() {
@@ -27,8 +28,8 @@ public class Rectangle {
         return width;
     }
 
-    public void setTopLeftPoint(Point topLeftPoint) {
-        this.topLeftPoint = topLeftPoint;
+    public void setPosition(Point position) {
+        this.position = position;
     }
 
     public void setHeight(double height) {
@@ -39,22 +40,28 @@ public class Rectangle {
         this.width = width;
     }
 
-    public double areaRect(){
+    @Override
+    public double getArea() {
         return height*width;
     }
 
-    public double perimeter(){
+    @Override
+    public double getPerimeter() {
         return height+height+width+width;
     }
 
+    @Override
+    public String toString(){
+        return getClass().getSimpleName() + " Top left point: " + this.position.toString() + ", Width: " + this.width + ", Height: " + this.height;
+    }
     public boolean containsPoint(Point point){
 
-        Point bottomLeftPoint = new Point(topLeftPoint.getX(), topLeftPoint.getY() - height);
+        Point bottomLeftPoint = new Point(position.getX(), position.getY() - height);
         Point bottomRightPoint = new Point(bottomLeftPoint.getX()+width, bottomLeftPoint.getY());
-        Point topRightPoint = new Point(bottomRightPoint.getX(), topLeftPoint.getY());
+        Point topRightPoint = new Point(bottomRightPoint.getX(), position.getY());
 
-        if(point.getX() > topLeftPoint.getX() && point.getX() < topRightPoint.getX()
-                && point.getY() > bottomLeftPoint.getY() && point.getY() < topLeftPoint.getY()){
+        if(point.getX() > position.getX() && point.getX() < topRightPoint.getX()
+                && point.getY() > bottomLeftPoint.getY() && point.getY() < position.getY()){
             return true;
         }
         else {

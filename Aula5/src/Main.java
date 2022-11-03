@@ -38,5 +38,10 @@ public class Main {
 
         double perimeter = rect1.perimeter();
         System.out.println(perimeter);
+
+        Point p = new Point(2, 3);
+
+        boolean contains = rect1.containsPoint(p);
+        System.out.println(contains);
     }
 }
